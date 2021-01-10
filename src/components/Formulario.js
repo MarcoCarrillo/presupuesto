@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Error from './Error';
 import shortid from 'shortid';
 
-const Formulario = ({agregarNuevoGasto}) => {
+const Formulario = ({guardarGasto, guardarCrearGasto}) => {
 
     //state
     const [nombre, guardarNombre ]= useState('');
@@ -21,6 +21,7 @@ const Formulario = ({agregarNuevoGasto}) => {
         }
         //en caso de que pase la validacion ahora el error es false
         guardarError(false);
+
         //construir el gasto
         const gasto = {
             nombre,
@@ -29,7 +30,8 @@ const Formulario = ({agregarNuevoGasto}) => {
         }
         
         //pasar el gasto al componente principal
-        agregarNuevoGasto(gasto);
+        guardarGasto(gasto);
+        guardarCrearGasto(true);//una vez que se genere el gasto pasa a true
         //reset form
         guardarNombre('');
         guardarCantidad(0);
